@@ -3,9 +3,9 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.53">
     <root id="1">
       <DateStyle>mdy</DateStyle>
-      <IntrospectionStateNumber>755</IntrospectionStateNumber>
+      <IntrospectionStateNumber>764</IntrospectionStateNumber>
       <ServerVersion>17.4</ServerVersion>
-      <StartupTime>1743624154</StartupTime>
+      <StartupTime>1743683783</StartupTime>
       <TimeZones>true ACDT
 true ACSST
 false ACST
@@ -1404,7 +1404,7 @@ true posixrules
 13219||10|C|G
 13219||-9223372036854775808|U|G
 13219||10|U|G</Grants>
-      <IntrospectionStateNumber>755</IntrospectionStateNumber>
+      <IntrospectionStateNumber>764</IntrospectionStateNumber>
       <ObjectId>5</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -4826,11 +4826,230 @@ true posixrules
     <schema id="265" parent="3" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>755</IntrospectionStateNumber>
-      <LastIntrospectionLocalTimestamp>2025-04-02.20:08:08</LastIntrospectionLocalTimestamp>
+      <IntrospectionStateNumber>764</IntrospectionStateNumber>
+      <LastIntrospectionLocalTimestamp>2025-04-03.12:38:59</LastIntrospectionLocalTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>532</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
     </schema>
+    <sequence id="266" parent="265" name="category_id_seq">
+      <ObjectId>24590</ObjectId>
+      <SequenceIdentity>1</SequenceIdentity>
+      <StartValue>1</StartValue>
+      <StateNumber>759</StateNumber>
+      <StoredType>integer|0s</StoredType>
+      <OwnerName>postgres</OwnerName>
+    </sequence>
+    <sequence id="267" parent="265" name="line_id_seq">
+      <ObjectId>24581</ObjectId>
+      <SequenceIdentity>1</SequenceIdentity>
+      <StartValue>1</StartValue>
+      <StateNumber>757</StateNumber>
+      <StoredType>integer|0s</StoredType>
+      <OwnerName>postgres</OwnerName>
+    </sequence>
+    <sequence id="268" parent="265" name="product_id_seq">
+      <ObjectId>24604</ObjectId>
+      <SequenceIdentity>1</SequenceIdentity>
+      <StartValue>1</StartValue>
+      <StateNumber>761</StateNumber>
+      <StoredType>integer|0s</StoredType>
+      <OwnerName>postgres</OwnerName>
+    </sequence>
+    <table id="269" parent="265" name="category">
+      <ObjectId>24591</ObjectId>
+      <StateNumber>759</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <table id="270" parent="265" name="line">
+      <ObjectId>24582</ObjectId>
+      <StateNumber>759</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <table id="271" parent="265" name="product">
+      <ObjectId>24605</ObjectId>
+      <StateNumber>761</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <column id="272" parent="269" name="id">
+      <DefaultExpression>nextval(&apos;category_id_seq&apos;::regclass)</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>759</StateNumber>
+      <StoredType>integer|0s</StoredType>
+      <SequenceId>24590</SequenceId>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="273" parent="269" name="name">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StateNumber>759</StateNumber>
+      <StoredType>varchar(50)|0s</StoredType>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="274" parent="269" name="line_id">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StateNumber>759</StateNumber>
+      <StoredType>integer|0s</StoredType>
+      <TypeId>23</TypeId>
+    </column>
+    <foreign-key id="275" parent="269" name="category_line_id_fkey">
+      <ColNames>line_id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>24599</ObjectId>
+      <StateNumber>759</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>24582</RefTableId>
+    </foreign-key>
+    <index id="276" parent="269" name="category_pkey">
+      <ColNames>id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>24595</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>759</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <index id="277" parent="269" name="category_name_key">
+      <ColNames>name</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>24597</ObjectId>
+      <StateNumber>759</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+      <CollationNames>default</CollationNames>
+      <CollationIds>100</CollationIds>
+      <CollationParentNames>pg_catalog</CollationParentNames>
+    </index>
+    <key id="278" parent="269" name="category_pkey">
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>24596</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>759</StateNumber>
+      <UnderlyingIndexId>24595</UnderlyingIndexId>
+    </key>
+    <key id="279" parent="269" name="category_name_key">
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>24598</ObjectId>
+      <StateNumber>759</StateNumber>
+      <UnderlyingIndexId>24597</UnderlyingIndexId>
+    </key>
+    <column id="280" parent="270" name="id">
+      <DefaultExpression>nextval(&apos;line_id_seq&apos;::regclass)</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>757</StateNumber>
+      <StoredType>integer|0s</StoredType>
+      <SequenceId>24581</SequenceId>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="281" parent="270" name="name">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StateNumber>757</StateNumber>
+      <StoredType>varchar(50)|0s</StoredType>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="282" parent="270" name="line_pkey">
+      <ColNames>id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>24586</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>757</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <index id="283" parent="270" name="line_name_key">
+      <ColNames>name</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>24588</ObjectId>
+      <StateNumber>757</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+      <CollationNames>default</CollationNames>
+      <CollationIds>100</CollationIds>
+      <CollationParentNames>pg_catalog</CollationParentNames>
+    </index>
+    <key id="284" parent="270" name="line_pkey">
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>24587</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>757</StateNumber>
+      <UnderlyingIndexId>24586</UnderlyingIndexId>
+    </key>
+    <key id="285" parent="270" name="line_name_key">
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>24589</ObjectId>
+      <StateNumber>757</StateNumber>
+      <UnderlyingIndexId>24588</UnderlyingIndexId>
+    </key>
+    <column id="286" parent="271" name="id">
+      <DefaultExpression>nextval(&apos;product_id_seq&apos;::regclass)</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>761</StateNumber>
+      <StoredType>integer|0s</StoredType>
+      <SequenceId>24604</SequenceId>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="287" parent="271" name="name">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StateNumber>761</StateNumber>
+      <StoredType>varchar(50)|0s</StoredType>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="288" parent="271" name="category_id">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StateNumber>761</StateNumber>
+      <StoredType>integer|0s</StoredType>
+      <TypeId>23</TypeId>
+    </column>
+    <foreign-key id="289" parent="271" name="product_category_id_fkey">
+      <ColNames>category_id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>24613</ObjectId>
+      <StateNumber>761</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>24591</RefTableId>
+    </foreign-key>
+    <index id="290" parent="271" name="product_pkey">
+      <ColNames>id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>24609</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>761</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <index id="291" parent="271" name="product_name_key">
+      <ColNames>name</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>24611</ObjectId>
+      <StateNumber>761</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+      <CollationNames>default</CollationNames>
+      <CollationIds>100</CollationIds>
+      <CollationParentNames>pg_catalog</CollationParentNames>
+    </index>
+    <key id="292" parent="271" name="product_pkey">
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>24610</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>761</StateNumber>
+      <UnderlyingIndexId>24609</UnderlyingIndexId>
+    </key>
+    <key id="293" parent="271" name="product_name_key">
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>24612</ObjectId>
+      <StateNumber>761</StateNumber>
+      <UnderlyingIndexId>24611</UnderlyingIndexId>
+    </key>
   </database-model>
 </dataSource>
