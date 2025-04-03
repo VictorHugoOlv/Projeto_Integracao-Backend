@@ -1,7 +1,7 @@
 package org.example.models;
 
-import jakarta.persistence.*;
-import jakarta.persistence.criteria.*;
+import javax.persistence.*;
+import javax.persistence.criteria.*;
 import org.example.models.enums.ProductEnum;
 
 import java.util.Arrays;
