@@ -45,15 +45,15 @@ public enum ProductEnum {
         return category;
     }
 
-    public static List<Product> getAllProducts() {
-        return Arrays.stream(ProductEnum.values())
-                .map(productEnum -> new Product(
-                        productEnum.getCategory().getLineName().getLineName(),
-                        productEnum.getCategory().getCategoryName(),
-                        productEnum.getProductName()
-                ))
-                .collect(Collectors.toList());
-    }
+//    public static List<Product> getAllProducts() {
+//        return Arrays.stream(ProductEnum.values())
+//                .map(productEnum -> new Product(
+//                        productEnum.getCategory().getLineName().getLineName(),
+//                        productEnum.getCategory().getCategoryName(),
+//                        productEnum.getProductName()
+//                ))
+//                .collect(Collectors.toList());
+//    }
 
     public static ProductEnum[] getProductsByCategory(CategoryEnum category) {
         return Arrays.stream(values()).

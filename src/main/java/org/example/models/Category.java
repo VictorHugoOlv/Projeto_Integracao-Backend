@@ -1,19 +1,30 @@
 package org.example.models;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "category")
 public class Category {
-    private final String category;
-    private final String product;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    public Category(String category, String model) {
-        this.category = category;
-        this.product = model;
+    @Column(unique = true, nullable = false)
+    private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "line_id", nullable = false)
+    private Line line;
+
+    public Long getId() {
+        return id;
     }
 
-    public String getCategory() {
-        return category;
+    public String getName() {
+        return name;
     }
 
-    public String getProduct() {
-        return product;
+    public Line getLine() {
+        return line;
     }
 }

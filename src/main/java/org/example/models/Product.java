@@ -1,29 +1,45 @@
 package org.example.models;
 
+import jakarta.persistence.*;
+import jakarta.persistence.criteria.*;
+import org.example.models.enums.ProductEnum;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Entity
+@Table(name = "product")
 public class Product {
-    private String line;
-    private String category;
-    private String model;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    public Product() {
+    @Column(unique = true, nullable = false)
+    private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
+
+    public Long getId() {
+        return id;
     }
 
-    public Product(String line, String category, String model) {
-        this.line = line;
-        this.category = category;
-        this.model = model;
+    public String getName() {
+        return name;
     }
 
-    public String getLine() {
-        return line;
-    }
-
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public String getModel() {
-        return model;
+    public static List<Product> getAllProducts(EntityManager entityManager) {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Product> query = cb.createQuery(Product.class);
+        Root<Product> root = query.from(Product.class);
+        query.select(root);
+        return entityManager.createQuery(query).getResultList();
     }
 
 }
