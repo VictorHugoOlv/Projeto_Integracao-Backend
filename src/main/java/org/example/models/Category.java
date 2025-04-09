@@ -16,11 +16,16 @@ public class Category {
     @JoinColumn(name = "line_id", nullable = false)
     private Line line;
 
-    public Long getId() {
+    @Override
+    public String toString(){
+        return this.name;
+    }
+
+    public Long getCategoryId() {
         return id;
     }
 
-    public String getName() {
+    public String getCategoryName() {
         return name;
     }
 

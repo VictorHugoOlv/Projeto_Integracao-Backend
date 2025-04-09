@@ -27,3 +27,7 @@ VALUES ('Cronos 6001-A', (SELECT id FROM category WHERE name = 'CronosOld')),
        ('ARES 8023 15', (SELECT id FROM category WHERE name = 'Ares THS')),
        ('ARES 8023 200', (SELECT id FROM category WHERE name = 'Ares THS')),
        ('ARES 8023 2,5', (SELECT id FROM category WHERE name = 'Ares THS'));
+
+SELECT * FROM line;
+SELECT * FROM category;
+SELECT * FROM product;

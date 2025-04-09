@@ -1,6 +1,10 @@
 package org.example.models;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import java.util.List;
 
 @Entity
 @Table(name = "line")
@@ -12,11 +16,19 @@ public class Line {
     @Column(unique = true, nullable = false)
     private String name;
 
-    public Long getId() {
+    @Override
+    public String toString(){
+        return this.name;
+    }
+
+    public Line() {}
+
+    public Long getLineId() {
         return id;
     }
 
-    public String getName() {
+    public String getLineName() {
         return name;
     }
+
 }

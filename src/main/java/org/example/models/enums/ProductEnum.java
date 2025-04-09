@@ -48,7 +48,7 @@ public enum ProductEnum {
 //    public static List<Product> getAllProducts() {
 //        return Arrays.stream(ProductEnum.values())
 //                .map(productEnum -> new Product(
-//                        productEnum.getCategory().getLineName().getLineName(),
+//                        productEnum.getCategory().getSelectedLine().getSelectedLine(),
 //                        productEnum.getCategory().getCategoryName(),
 //                        productEnum.getProductName()
 //                ))
