@@ -2,19 +2,20 @@ package org.example.controllers;
 
 import org.example.models.Line;
 
-import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+
 import java.util.List;
 
 public class LineController {
-    private EntityManager em;
+    private Session session;
 
-    public LineController(EntityManager em) {
-        this.em = em;
+    public LineController(Session session) {
+        this.session = session;
     }
 
     public List<Line> getAllLines() {
-        TypedQuery<Line> query = em.createQuery("SELECT l FROM Line l", Line.class);
+        Query<Line> query = session.createQuery("FROM Line", Line.class);
         return query.getResultList();
     }
 }
