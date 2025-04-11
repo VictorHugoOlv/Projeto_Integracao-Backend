@@ -1,15 +1,15 @@
 package org.example;
 
 import org.example.controllers.*;
+import org.example.helper.DataBaseHelper;
 import org.example.models.*;
-import org.example.utils.HibernateUtil;
 import org.hibernate.Session;
 
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = DataBaseHelper.getSession();
 
         LineController lineController = new LineController(session);
         CategoryController categoryController = new CategoryController(session);
