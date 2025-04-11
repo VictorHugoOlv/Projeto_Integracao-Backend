@@ -1,23 +1,19 @@
 package org.example;
 
-import javax.persistence.*;
-
-import org.example.controllers.CategoryController;
-import org.example.controllers.LineController;
-import org.example.controllers.ProductController;
-import org.example.models.Category;
-import org.example.models.Line;
-import org.example.models.Product;
+import org.example.controllers.*;
+import org.example.models.*;
+import org.example.utils.HibernateUtil;
+import org.hibernate.Session;
 
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        EntityManager em = Persistence.createEntityManagerFactory("example").createEntityManager();
+        Session session = HibernateUtil.getSessionFactory().openSession();
 
-        LineController lineController = new LineController(em);
-        CategoryController categoryController = new CategoryController(em);
-        ProductController productController = new ProductController(em);
+        LineController lineController = new LineController(session);
+        CategoryController categoryController = new CategoryController(session);
+        ProductController productController = new ProductController(session);
 
         for (Line l : lineController.getAllLines()) {
             System.out.println(l);
