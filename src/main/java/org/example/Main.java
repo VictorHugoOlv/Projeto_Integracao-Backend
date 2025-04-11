@@ -1,19 +1,16 @@
 package org.example;
 
 import org.example.controllers.*;
-import org.example.helper.DataBaseHelper;
 import org.example.models.*;
-import org.hibernate.Session;
 
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Session session = DataBaseHelper.getSession();
 
-        LineController lineController = new LineController(session);
-        CategoryController categoryController = new CategoryController(session);
-        ProductController productController = new ProductController(session);
+        LineController lineController = new LineController();
+        CategoryController categoryController = new CategoryController();
+        ProductController productController = new ProductController();
 
         for (Line l : lineController.getAllLines()) {
             System.out.println(l);
