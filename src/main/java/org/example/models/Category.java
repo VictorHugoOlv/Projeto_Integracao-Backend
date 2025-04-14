@@ -1,6 +1,7 @@
 package org.example.models;
 
 import javax.persistence.*;
+import java.util.*;
 
 @Entity
 @Table(name = "category")
@@ -16,9 +17,15 @@ public class Category {
     @JoinColumn(name = "line_id", nullable = false)
     private Line line;
 
-    @Override
-    public String toString(){
-        return this.name;
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Product> products;
+
+    public Category() {
+    }
+
+    public Category(String name, Line line) {
+        this.name = name;
+        this.line = line;
     }
 
     public Long getCategoryId() {
@@ -31,5 +38,9 @@ public class Category {
 
     public Line getLine() {
         return line;
+    }
+
+    public Set<Product> getProducts() {
+        return products;
     }
 }

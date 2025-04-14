@@ -16,9 +16,12 @@ public class Product {
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
-    @Override
-    public String toString() {
-        return this.name;
+    public Product() {
+    }
+
+    public Product(String name, Category category) {
+        this.name = name;
+        this.category = category;
     }
 
     public Long getProductId() {

@@ -20,10 +20,9 @@ public class LineController {
         }
     }
 
-    public Set<String> getDistinctLinesSorted() {
+    public Set<Line> getDistinctLinesSorted() {
         return getAllLines().stream()
-                .map(Line::getLineName)
-                .filter(line -> !line.isEmpty())
+                .filter(line -> line != null)
                 .sorted()
                 .collect(Collectors.toCollection(LinkedHashSet::new));
     }
