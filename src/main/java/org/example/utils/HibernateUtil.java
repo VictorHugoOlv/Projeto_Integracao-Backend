@@ -9,7 +9,7 @@ public class HibernateUtil {
     static {
         try {
             sessionFactory = new Configuration()
-                    .configure("hibernate.cfg.xml")
+                    .configure()
                     .buildSessionFactory();
         } catch (Throwable ex) {
             System.err.println("Falha ao criar o SessionFactory." + ex);
