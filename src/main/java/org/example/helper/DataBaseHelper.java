@@ -12,8 +12,13 @@ public class DataBaseHelper {
     public static Session getSession() {
         Session session = threadLocalSession.get();
         if (session == null || !session.isOpen()) {
+
+            if (sessionFactory == null)
+                return null;
+
             session = sessionFactory.openSession();
             threadLocalSession.set(session);
+
         }
         return session;
     }
