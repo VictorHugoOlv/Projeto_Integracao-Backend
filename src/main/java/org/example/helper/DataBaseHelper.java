@@ -7,7 +7,14 @@ import static org.example.utils.HibernateUtil.threadLocalSession;
 
 public class DataBaseHelper {
 
+    private static final DataBaseHelper instance = new DataBaseHelper();
     private static final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+
+    private DataBaseHelper() {}
+
+    public static DataBaseHelper getInstance() {
+        return instance;
+    }
 
     public static Session getSession() {
         Session session = threadLocalSession.get();
