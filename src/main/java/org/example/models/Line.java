@@ -8,7 +8,7 @@ import java.util.Set;
 public class Line {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @Column(unique = true, nullable = false)
     private String name;
@@ -27,7 +27,7 @@ public class Line {
         this.name = name;
     }
 
-    public Long getLineId() {
+    public int getLineId() {
         return id;
     }
 

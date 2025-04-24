@@ -8,7 +8,7 @@ import java.util.*;
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @Column(unique = true, nullable = false)
     private String name;
@@ -28,7 +28,7 @@ public class Category {
         this.line = line;
     }
 
-    public Long getCategoryId() {
+    public int getCategoryId() {
         return id;
     }
 

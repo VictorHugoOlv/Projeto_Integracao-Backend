@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @Column(unique = true, nullable = false)
     private String name;
@@ -24,7 +24,7 @@ public class Product {
         this.category = category;
     }
 
-    public Long getProductId() {
+    public int getProductId() {
         return id;
     }
 
