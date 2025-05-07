@@ -1,29 +1,39 @@
 package org.example.models;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "product")
 public class Product {
-    private String line;
-    private String category;
-    private String model;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column(unique = true, nullable = false)
+    private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
 
     public Product() {
     }
 
-    public Product(String line, String category, String model) {
-        this.line = line;
+    public Product(String name, Category category) {
+        this.name = name;
         this.category = category;
-        this.model = model;
     }
 
-    public String getLine() {
-        return line;
+    public int getProductId() {
+        return id;
     }
 
-    public String getCategory() {
+    public String getProductName() {
+        return name;
+    }
+
+    public Category getCategory() {
         return category;
-    }
-
-    public String getModel() {
-        return model;
     }
 
 }
