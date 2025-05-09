@@ -1,8 +1,15 @@
 package org.example.models;
 
-import javax.persistence.*;
-import java.util.Set;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
+import javax.persistence.*;
+import java.util.List;
+
+@Getter
+@Setter
+@AllArgsConstructor
 @Entity
 @Table(name = "line")
 public class Line {
@@ -14,29 +21,7 @@ public class Line {
     private String name;
 
     @OneToMany(mappedBy = "line", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Category> categories;
-
-    @Override
-    public String toString() {
-        return name;
-    }
+    private List<Category> categories;
 
     public Line() {}
-
-    public Line(String name) {
-        this.name = name;
-    }
-
-    public int getLineId() {
-        return id;
-    }
-
-    public String getLineName() {
-        return name;
-    }
-
-    public Set<Category> getCategories() {
-        return categories;
-    }
-
 }

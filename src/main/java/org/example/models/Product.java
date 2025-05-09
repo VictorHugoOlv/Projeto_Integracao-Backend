@@ -1,7 +1,14 @@
 package org.example.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
+@Getter
+@Setter
+@AllArgsConstructor
 @Entity
 @Table(name = "product")
 public class Product {
@@ -16,24 +23,5 @@ public class Product {
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
-    public Product() {
-    }
-
-    public Product(String name, Category category) {
-        this.name = name;
-        this.category = category;
-    }
-
-    public int getProductId() {
-        return id;
-    }
-
-    public String getProductName() {
-        return name;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
+    public Product() {}
 }
