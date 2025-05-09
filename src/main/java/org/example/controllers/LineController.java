@@ -1,20 +1,36 @@
 package org.example.controllers;
 
-import org.example.helper.DataBaseHelper;
+import org.example.dto.LineDTO;
 import org.example.models.Line;
-
-import org.hibernate.Session;
-import org.hibernate.query.Query;
+import org.example.repositories.LineRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+@RestController
+@RequestMapping("/lines")
 public class LineController {
 
-    public List<Line> getAllLines() {
-        DataBaseHelper.getInstance();
-        Session session = DataBaseHelper.getSession();
+    @Autowired
+    private LineRepository lineRepository;
 
-        Query<Line> query = session.createQuery("FROM Line", Line.class);
-        return query.getResultList();
+    @GetMapping
+    public List<LineDTO> getAllLines() {
+        return lineRepository
+                .findAll()
+                .stream()
+                .map(this::lineToDTO)
+                .collect(Collectors.toList());
+    }
+
+    private LineDTO lineToDTO(Line line) {
+        LineDTO lineDTO = new LineDTO();
+        lineDTO.setId(line.getId());
+        lineDTO.setName(line.getName());
+        return lineDTO;
     }
 }
