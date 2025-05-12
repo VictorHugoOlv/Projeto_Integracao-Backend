@@ -2,13 +2,17 @@ package org.example.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.example.dto.LineDTO;
+import org.example.dto.ProductDTO;
 
 import javax.persistence.*;
 
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "product")
 public class Product {
@@ -23,5 +27,16 @@ public class Product {
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
-    public Product() {}
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {return true;}
+        if (obj == null) {return false;}
+
+        if (obj.getClass().equals(ProductDTO.class)) {return false;}
+
+        ProductDTO productDTO = (ProductDTO) obj;
+        return this.id.equals(productDTO.getId()) &&
+               this.name.equals(productDTO.getName()) &&
+               this.category.getId().equals(productDTO.getCategoryId());
+    }
 }

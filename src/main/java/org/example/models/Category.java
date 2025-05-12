@@ -2,7 +2,10 @@ package org.example.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.example.dto.CategoryDTO;
+import org.example.dto.LineDTO;
 
 import javax.persistence.*;
 import java.util.*;
@@ -10,6 +13,7 @@ import java.util.*;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "category")
 public class Category {
@@ -27,5 +31,16 @@ public class Category {
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Product> products;
 
-    public Category() {}
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {return true;}
+        if (obj == null) {return false;}
+
+        if (!obj.getClass().equals(CategoryDTO.class)) {return false;}
+
+        CategoryDTO categoryDTO = (CategoryDTO) obj;
+        return this.id.equals(categoryDTO.getId()) &&
+               this.name.equals(categoryDTO.getName()) &&
+               this.line.getId().equals(categoryDTO.getLineId());
+    }
 }
