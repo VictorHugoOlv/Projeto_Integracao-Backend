@@ -1,5 +1,7 @@
 package org.example.controllers;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.example.dto.ProductDTO;
 import org.example.models.Category;
 import org.example.services.ProductService;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@Tag(name = "Produtos")
 @RestController
 @RequestMapping("/products")
 public class ProductController {
@@ -17,6 +20,7 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping
+    @Operation(summary = "Pega todos os Produtos da respectiva Categoria")
     public List<ProductDTO> getProductsByCategory(Category category) {
         return productService.getProductsByCategory(category);
     }
