@@ -32,7 +32,7 @@ public class Product {
         if (this == obj) {return true;}
         if (obj == null) {return false;}
 
-        if (obj.getClass().equals(ProductDTO.class)) {return false;}
+        if (!obj.getClass().equals(ProductDTO.class)) {return false;}
 
         ProductDTO productDTO = (ProductDTO) obj;
         return this.id.equals(productDTO.getId()) &&
