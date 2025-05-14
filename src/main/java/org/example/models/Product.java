@@ -39,4 +39,9 @@ public class Product {
                this.name.equals(productDTO.getName()) &&
                this.category.getId().equals(productDTO.getCategoryId());
     }
+
+    public Product(String name, Category category) {
+        this.name = name;
+        this.category = category;
+    }
 }
