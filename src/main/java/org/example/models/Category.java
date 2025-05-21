@@ -1,14 +1,25 @@
 package org.example.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.example.dto.CategoryDTO;
+import org.example.dto.LineDTO;
+
 import javax.persistence.*;
 import java.util.*;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "category")
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(unique = true, nullable = false)
     private String name;
@@ -18,29 +29,18 @@ public class Category {
     private Line line;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Product> products;
+    private List<Product> products;
 
-    public Category() {
-    }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {return true;}
+        if (obj == null) {return false;}
 
-    public Category(String name, Line line) {
-        this.name = name;
-        this.line = line;
-    }
+        if (!obj.getClass().equals(CategoryDTO.class)) {return false;}
 
-    public int getCategoryId() {
-        return id;
-    }
-
-    public String getCategoryName() {
-        return name;
-    }
-
-    public Line getLine() {
-        return line;
-    }
-
-    public Set<Product> getProducts() {
-        return products;
+        CategoryDTO categoryDTO = (CategoryDTO) obj;
+        return this.id.equals(categoryDTO.getId()) &&
+               this.name.equals(categoryDTO.getName()) &&
+               this.line.getId().equals(categoryDTO.getLineId());
     }
 }

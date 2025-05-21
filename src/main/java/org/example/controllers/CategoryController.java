@@ -1,26 +1,28 @@
 package org.example.controllers;
 
-import org.example.helper.DataBaseHelper;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.example.dto.CategoryDTO;
+import org.example.services.CategoryService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import org.example.models.Category;
-import org.example.models.Line;
-import org.hibernate.Session;
-import org.hibernate.query.Query;
-
-import java.util.ArrayList;
 import java.util.List;
 
+@Tag(name = "Categorias")
+@RestController
+@RequestMapping("/categories")
 public class CategoryController {
 
-    public List<Category> getCategoriesByLine(Line line) {
-        DataBaseHelper.getInstance();
-        Session session = DataBaseHelper.getSession();
+    @Autowired
+    private CategoryService categoryService;
 
-        Query<Category> query = session.createQuery(
-                "SELECT DISTINCT c FROM Category c LEFT JOIN FETCH c.products " +
-                        "WHERE c.line = :line", Category.class
-        );
-        query.setParameter("line", line);
-        return query.list();
+    @GetMapping("/{lineId}")
+    @Operation(summary = "Pega todas as Categorias da Linha selecionada")
+    public List<CategoryDTO> getCategoriesByLine(@PathVariable("lineId") Long lineId) {
+        return categoryService.getCategoriesByLine(lineId);
     }
 }
