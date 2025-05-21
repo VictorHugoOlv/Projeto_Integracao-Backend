@@ -1,20 +1,28 @@
 package org.example.controllers;
 
-import org.example.helper.DataBaseHelper;
-import org.example.models.Line;
 
-import org.hibernate.Session;
-import org.hibernate.query.Query;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.example.dto.LineDTO;
+import org.example.services.LineService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@Tag(name = "Linhas")
+@RestController
+@RequestMapping("/lines")
 public class LineController {
 
-    public List<Line> getAllLines() {
-        DataBaseHelper.getInstance();
-        Session session = DataBaseHelper.getSession();
+    @Autowired
+    private LineService lineService;
 
-        Query<Line> query = session.createQuery("FROM Line", Line.class);
-        return query.getResultList();
+    @Operation(summary = "Pega todas as Linhas ")
+    @GetMapping
+    public List<LineDTO> getAllLines() {
+        return lineService.getAllLines();
     }
 }
