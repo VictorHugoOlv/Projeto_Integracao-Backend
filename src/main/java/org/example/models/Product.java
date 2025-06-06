@@ -1,9 +1,6 @@
 package org.example.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.example.dto.LineDTO;
 import org.example.dto.ProductDTO;
 
@@ -13,6 +10,7 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
 @Table(name = "product")
 public class Product {
