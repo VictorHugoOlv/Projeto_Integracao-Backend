@@ -3,7 +3,6 @@ package org.example.services;
 import org.example.dto.LineDTO;
 import org.example.models.Line;
 import org.example.repositories.LineRepository;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -14,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.Mockito.*;
+import static org.springframework.test.util.AssertionErrors.assertEquals;
 
 @ExtendWith(MockitoExtension.class)
 class LineServiceTest {
@@ -34,6 +34,7 @@ class LineServiceTest {
         List<LineDTO> resultList = lineService.getAllLines();
         verify(lineRepository, times(1)).findAll();
 
-        Assertions.assertEquals(linesList.size(), resultList.size());
+        assertEquals("Compare if the number of Mocked Categories is the same as the Service list",
+                linesList.size(), resultList.size());
     }
 }

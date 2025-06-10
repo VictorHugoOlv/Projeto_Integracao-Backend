@@ -5,7 +5,6 @@ import org.example.models.Category;
 import org.example.models.Line;
 import org.example.models.Product;
 import org.example.repositories.CategoryRepository;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -16,6 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.mockito.Mockito.*;
+import static org.springframework.test.util.AssertionErrors.assertEquals;
 
 @ExtendWith(MockitoExtension.class)
 class CategoryServiceTest {
@@ -50,15 +50,24 @@ class CategoryServiceTest {
         List<CategoryDTO> resultList = categoryService.getCategoriesByLine(lineId);
 
         verify(categoryRepository, times(1)).findByLineId(lineId);
+        assertEquals("Compare if the number of Mocked Categories is the same as the Service list",
+                mockCategories.size(), resultList.size());
+        assertEquals("Verify if the size of Service list is the same as the Mocked list",
+                1, resultList.size());
 
-        Assertions.assertEquals(mockCategories.size(), resultList.size());
-        Assertions.assertEquals(1, resultList.size());
         CategoryDTO dto = resultList.get(0);
-        Assertions.assertEquals(category.getId(), dto.getId());
-        Assertions.assertEquals(category.getName(), dto.getName());
-        Assertions.assertEquals(lineId, dto.getLineId());
-        Assertions.assertEquals(3, dto.getProducts().size());
-        Assertions.assertEquals(100L, dto.getProducts().get(0).getId());
-        Assertions.assertEquals("product1", dto.getProducts().get(0).getName());
+
+        assertEquals("Verify if the Categories Id´s are being preserved",
+                category.getId(), dto.getId());
+        assertEquals("Verify if the Categories Names are being preserved",
+                category.getName(), dto.getName());
+        assertEquals("Verify if the Line Id is being preserved",
+                lineId, dto.getLineId());
+        assertEquals("Verify if the size of Service Product list is the same as the Mocked list",
+                3, dto.getProducts().size());
+        assertEquals("Verify the integrity of Product Id´s and their order",
+                100L, dto.getProducts().get(0).getId());
+        assertEquals("Verify the integrity of Product Names and their order",
+                "product1", dto.getProducts().get(0).getName());
     }
 }
