@@ -20,7 +20,6 @@ class CategoryControllerTest {
     private CategoryController categoryController;
 
     @Test
-    @DisplayName("Conseguir pegar todas as categorias e produtos de Cronos")
     void getCategoriesByLineTest() {
         categoryController.getCategoriesByLine(1L);
 
