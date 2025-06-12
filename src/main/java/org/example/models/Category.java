@@ -1,9 +1,6 @@
 package org.example.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.example.dto.CategoryDTO;
 import org.example.dto.LineDTO;
 
@@ -14,6 +11,7 @@ import java.util.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
 @Table(name = "category")
 public class Category {
