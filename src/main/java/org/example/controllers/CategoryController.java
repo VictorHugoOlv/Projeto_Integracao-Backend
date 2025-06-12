@@ -1,6 +1,5 @@
 package org.example.controllers;
 
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.example.dto.CategoryDTO;
 import org.example.services.CategoryService;
@@ -21,7 +20,6 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @GetMapping("/{lineId}")
-    @Operation(summary = "Pega todas as Categorias da Linha selecionada")
     public List<CategoryDTO> getCategoriesByLine(@PathVariable("lineId") Long lineId) {
         return categoryService.getCategoriesByLine(lineId);
     }
